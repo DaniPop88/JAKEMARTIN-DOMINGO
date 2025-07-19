@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakemartin Domingo Retail Hub | Convenience Store Manila</title>
+    <meta name="description" content="Jakemartin Domingo Retail Hub – Your trusted neighborhood convenience store in Manila. Groceries, snacks, bills payment, delivery, pasalubong and more.">
+    <link rel="icon" type="image/png" href="image/FAVICON.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --accent: #f9a825;
+            --black: #181818;
+            --white: #fff;
+            --background: #222;
+            --text: #f5f5f5;
+            --footer: #181818;
+            --card: #282828;
+            --border: #333;
+            --cart-btn-size: 58px;
+        }
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header {
+            background: var(--black);
+            color: var(--white);
+            padding: 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(32, 98, 161, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            transition: box-shadow 0.3s;
+        }
+        .logo-container {
+            background: var(--black);
+            padding: 30px 0 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-img {
+            display: block;
+            height: 96px;
+            width: auto;
+            max-width: 100%;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        nav {
+            margin-top: 0;
+            padding-bottom: 16px;
+            background: var(--black);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 1.08rem;
+            transition: color 0.2s;
+            display: inline-block;
+            padding: 3px 0;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+        .burger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px 12px;
+            margin-left: auto;
+            margin-right: 14px;
+            z-index: 102;
+        }
+        .burger-icon {
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: relative;
+        }
+        .burger-icon span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transition: all 0.3s;
+        }
+        .burger-icon span:nth-child(1) {
+            top: 6px;
+        }
+        .burger-icon span:nth-child(2) {
+            top: 13px;
+        }
+        .burger-icon span:nth-child(3) {
+            top: 20px;
+        }
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            transition: max-height 0.3s;
+        }
+        @media (max-width: 800px) {
+            .section { padding: 30px 10px; }
+            .products-grid { gap: 16px; }
+            .cart-section, .contact-section { padding: 20px 8px; }
+            .logo-img { height: 74px; }
+        }
+        @media (max-width: 600px) {
+            .logo-container { padding: 14px 0 8px 0; }
+            .logo-img { height: 56px; }
+            nav {
+                justify-content: flex-end;
+                padding-bottom: 0;
+                height: 56px;
+                position: relative;
+            }
+            .burger-btn {
+                display: block;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                width: 100%;
+                background: var(--black);
+                max-height: 0;
+                overflow: hidden;
+                box-shadow: 0 2px 20px #18181863;
+                transition: max-height 0.3s;
+                z-index: 101;
+            }
+            .nav-links.open {
+                max-height: 300px;
+                padding-bottom: 14px;
+            }
+            nav a {
+                margin: 18px 0 0 16px;
+                font-size: 1.08rem;
+                padding: 10px 0;
+                width: 100%;
+                border-bottom: none;
+                text-align: left;
+            }
+        }
+        .hero {
+            padding: 48px 20px 30px 20px;
+            background: linear-gradient(90deg, #181818 0%, #3a3a3a 100%);
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 8px #18181899;
+            letter-spacing: 0.04em;
+        }
+        .hero h2 {
+            font-size: 1.18rem;
+            font-weight: 500;
+            margin-bottom: 18px;
+            color: var(--white);
+            opacity: 0.93;
+        }
+        .hero p {
+            font-size: 1.06rem;
+            margin-bottom: 12px;
+            color: #ffe082;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+        .btn-shop {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            padding: 13px 36px;
+            font-size: 1.11rem;
+            border-radius: 24px;
+            font-weight: 700;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(249,168,37,0.12);
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.02em;
+        }
+        .btn-shop:hover {
+            background: #fffde7;
+            color: var(--primary);
+            border: 2px solid var(--accent);
+        }
+        .section {
+            padding: 38px 18px;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: transparent;
+        }
+        .section-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: var(--accent);
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 0.03em;
+            text-shadow: 1px 1px 8px #18181888;
+        }
+        .about-content {
+            font-size: 1.11rem;
+            line-height: 1.65;
+            color: var(--white);
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        .values-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0 0;
+        }
+        .values-list li {
+            margin-bottom: 8px;
+            padding-left: 0;
+            position: relative;
+            font-weight: 500;
+            color: var(--accent);
+        }
+        .values-list li:before {
+            content: "✔";
+            color: var(--primary);
+            margin-right: 7px;
+            font-size: 1.04em;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            margin-top: 36px;
+        }
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 16px 18px 16px;
+            text-align: left;
+            box-shadow: 0 2px 16px rgba(249, 168, 37, 0.09);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .product-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 13px;
+            background: #fffde7;
+            margin-bottom: 13px;
+            object-fit: contain;
+            border: 2px solid var(--accent);
+        }
+        .product-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 6px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+        .product-desc {
+            font-size: 0.99rem;
+            margin-bottom: 8px;
+            color: #ffe082;
+            text-align: center;
+            opacity: 0.87;
+        }
+        .product-info {
+            font-size: 0.99rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+            text-align: center;
+            font-weight: 500;
+        }
+        .product-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 9px;
+            text-align: center;
+        }
+        .add-cart-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 19px;
+            padding: 9px 21px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: background 0.2s;
+            letter-spacing: 0.01em;
+            box-shadow: 0 1px 2px #d32f2f40;
+        }
+        .add-cart-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        .cart-section {
+            background: #1b1b1b;
+            border-top: 2px solid var(--border);
+            padding: 32px 18px;
+        }
+        .cart-title {
+            font-size: 1.28rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+            letter-spacing: 0.03em;
+        }
+        .cart-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 13px 0;
+        }
+        .cart-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #282828;
+            border-radius: 10px;
+            margin-bottom: 7px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 4px #f9a82510;
+        }
+        .cart-item-title {
+            font-weight: 500;
+            color: var(--accent);
+        }
+        .cart-item-qty {
+            color: var(--primary);
+            font-size: 1em;
+            margin-left: 8px;
+        }
+        .cart-item-price {
+            color: #fffde7;
+            font-size: 0.99em;
+            margin-left: 10px;
+        }
+        .cart-item-remove-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-size: 0.93rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cart-item-remove-btn:hover {
+            background: #b71c1c;
+        }
+        .cart-total {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.11rem;
+            margin-bottom: 12px;
+            text-align: right;
+        }
+        .checkout-btn {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            border-radius: 21px;
+            font-size: 1.04rem;
+            font-weight: 700;
+            padding: 12px 32px;
+            cursor: pointer;
+            float: right;
+            box-shadow: 0 1px 5px #ffe08230;
+            transition: background 0.2s, color 0.2s;
+        }
+        .checkout-btn:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .contact-section {
+            padding: 38px 18px;
+            background: var(--black);
+            border-top: 1px solid var(--border);
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contact-list li {
+            margin-bottom: 11px;
+            font-size: 1.07rem;
+            color: var(--accent);
+        }
+        .contact-list a {
+            color: #ffe082;
+            text-decoration: underline;
+        }
+        .contact-list a:hover {
+            color: var(--primary);
+        }
+        .contact-section p {
+            color: #ffe082;
+            font-size: 1.03rem;
+            margin-top: 10px;
+        }
+        footer {
+            background: var(--footer);
+            color: #ffe082;
+            text-align: center;
+            padding: 30px 16px 22px 16px;
+            border-top: 2px solid var(--border);
+            font-size: 1.04rem;
+        }
+        .footer-links {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 11px;
+            font-size: 0.98rem;
+            font-weight: 700;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: var(--primary);
+        }
+        .footer-company {
+            margin-bottom: 8px;
+        }
+        .footer-meta {
+            font-size: 0.93rem;
+            color: #ffe082;
+            opacity: 0.8;
+            margin-top: 7px;
+        }
+        .cart-fab {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: var(--cart-btn-size);
+            height: var(--cart-btn-size);
+            background: var(--accent);
+            color: var(--black);
+            border-radius: 50%;
+            box-shadow: 0 4px 18px #f9a82555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: none;
+        }
+        .cart-fab:hover {
+            background: #ffd54f;
+        }
+        .cart-fab-icon {
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+        .cart-fab-count {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 2px solid #fff;
+        }
+        .cart-modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30,30,30,0.86);
+            justify-content: center;
+            align-items: center;
+        }
+        .cart-modal {
+            background: var(--card);
+            color: var(--text);
+            border-radius: 18px;
+            padding: 32px 24px 24px 24px;
+            max-width: 350px;
+            width: 90vw;
+            box-shadow: 0 8px 32px #18181899;
+            position: relative;
+            animation: popCartModal 0.2s ease;
+        }
+        @keyframes popCartModal {
+            0% { transform: scale(0.9); opacity:0 }
+            70% { transform: scale(1.05); opacity:1 }
+            100% { transform: scale(1); opacity:1 }
+        }
+        .cart-modal-header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cart-modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+            margin-left: 18px;
+        }
+        .cart-modal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            max-height: 210px;
+            overflow-y: auto;
+        }
+        .cart-modal-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #333;
+            border-radius: 10px;
+            margin-bottom: 7px;
+            padding: 8px 10px;
+            box-shadow: 0 1px 3px #f9a82514;
+        }
+        .cart-modal-item-title {
+            font-weight: 500;
+            color: var(--accent);
+            flex: 1 1 60%;
+            font-size: 1rem;
+        }
+        .cart-modal-item-qty {
+            color: var(--primary);
+            font-size: 0.96em;
+            margin-left: 10px;
+        }
+        .cart-modal-item-price {
+            color: #fffde7;
+            font-size: 0.97em;
+            margin-left: 10px;
+        }
+        .cart-modal-remove-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-size: 0.93rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cart-modal-remove-btn:hover {
+            background: #b71c1c;
+        }
+        .cart-modal-total {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.08rem;
+            margin-bottom: 11px;
+            text-align: right;
+        }
+        .cart-modal-checkout-btn {
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            border-radius: 20px;
+            font-size: 1.03rem;
+            font-weight: 700;
+            padding: 10px 26px;
+            cursor: pointer;
+            float: right;
+            box-shadow: 0 1px 5px #ffe08230;
+            transition: background 0.2s, color 0.2s;
+        }
+        .cart-modal-checkout-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .cart-modal-checkout-btn:hover:enabled {
+            background: var(--primary);
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.28rem; }
+            .hero h2 { font-size: 1rem; }
+            .section-title { font-size: 1.13rem; }
+            .product-card { padding: 11px 6px; }
+            .product-img { width: 56px; height: 56px; }
+            .cart-section { font-size: 0.99rem; }
+            .nav-links.open { max-height: 350px; }
+            .cart-modal { padding: 20px 8px 18px 8px; }
+            .cart-modal-header { font-size: 1.07rem; }
+        }
+    </style>
+    <script>
+        // Burger Button Functionality & Sticky Header Shadow
+        document.addEventListener("DOMContentLoaded", function() {
+            const burgerBtn = document.getElementById('burger-btn');
+            const navLinks = document.getElementById('nav-links');
+
+            burgerBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+                burgerBtn.classList.toggle('open');
+            });
+
+            Array.from(navLinks.getElementsByTagName('a')).forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 600) {
+                        navLinks.classList.remove('open');
+                        burgerBtn.classList.remove('open');
+                    }
+                });
+            });
+
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 30) {
+                    header.style.boxShadow = '0 4px 20px #18181855';
+                } else {
+                    header.style.boxShadow = '0 2px 8px rgba(32, 98, 161, 0.08)';
+                }
+            });
+
+            burgerBtn.addEventListener('keyup', function(e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    burgerBtn.click();
+                }
+            });
+        });
+
+        // Cart Logic for main section and floating button/modal
+        document.addEventListener("DOMContentLoaded", function() {
+            const cart = [];
+            const cartList = document.getElementById('cart-list');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Floating Cart Button and Modal Elements
+            const cartFab = document.getElementById('cart-fab');
+            const cartFabCount = document.getElementById('cart-fab-count');
+            const cartModalOverlay = document.getElementById('cart-modal-overlay');
+            const cartModalList = document.getElementById('cart-modal-list');
+            const cartModalTotal = document.getElementById('cart-modal-total');
+            const cartModalCheckoutBtn = document.getElementById('cart-modal-checkout-btn');
+            const cartModalClose = document.getElementById('cart-modal-close');
+
+            // Utility: Update both main cart and modal
+            function updateCart() {
+                // Main Cart Section
+                cartList.innerHTML = '';
+                let total = 0;
+                cart.forEach((item, idx) => {
+                    total += item.price * item.qty;
+                    const li = document.createElement('li');
+                    li.innerHTML =
+                        `<span class="cart-item-title">${item.title}</span>
+                        <span class="cart-item-qty">Qty: ${item.qty}</span>
+                        <span class="cart-item-price">₱${item.price.toFixed(2)}</span>
+                        <button class="cart-item-remove-btn" data-idx="${idx}" title="x">x</button>`;
+                    cartList.appendChild(li);
+                });
+                cartTotal.textContent = "Total: ₱" + total.toFixed(2);
+                checkoutBtn.disabled = cart.length === 0;
+
+                // Floating Cart Button count
+                cartFabCount.textContent = cart.reduce((a, b) => a + b.qty, 0);
+
+                // Modal Cart Section
+                cartModalList.innerHTML = '';
+                cart.forEach((item, idx) => {
+                    const li = document.createElement('li');
+                    li.innerHTML =
+                        `<span class="cart-modal-item-title">${item.title}</span>
+                        <span class="cart-modal-item-qty">Qty: ${item.qty}</span>
+                        <span class="cart-modal-item-price">₱${item.price.toFixed(2)}</span>
+                        <button class="cart-modal-remove-btn" data-idx="${idx}" title="Remove item">x</button>`;
+                    cartModalList.appendChild(li);
+                });
+                cartModalTotal.textContent = "Total: ₱" + total.toFixed(2);
+                cartModalCheckoutBtn.disabled = cart.length === 0;
+            }
+
+            // Add to Cart
+            function addToCart(title, price, qty) {
+                let found = cart.find(item => item.title === title);
+                if (found) {
+                    found.qty += 1;
+                } else {
+                    cart.push({title, price, qty: 1});
+                }
+                updateCart();
+            }
+
+            // Remove from Cart (by index)
+            function removeFromCart(idx) {
+                cart.splice(idx, 1);
+                updateCart();
+            }
+
+            // Add event listeners to product buttons
+            document.querySelectorAll('.add-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = btn.closest('.product-card');
+                    const title = card.querySelector('.product-title').textContent;
+                    const price = parseFloat(card.querySelector('.product-price').textContent.replace('₱',''));
+                    addToCart(title, price, 1);
+                });
+            });
+
+            // Main Cart: Remove item
+            cartList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('cart-item-remove-btn')) {
+                    const idx = parseInt(e.target.getAttribute('data-idx'));
+                    removeFromCart(idx);
+                }
+            });
+
+            // Checkout Button (main section)
+            checkoutBtn.addEventListener('click', function() {
+                window.location.href = 'order-summary.html';
+            });
+
+            // Floating Cart Button click: show modal
+            cartFab.addEventListener('click', function() {
+                cartModalOverlay.style.display = 'flex';
+            });
+
+            // Modal close button
+            cartModalClose.addEventListener('click', function() {
+                cartModalOverlay.style.display = 'none';
+            });
+
+            // Modal click outside: close modal
+            cartModalOverlay.addEventListener('click', function(e) {
+                if (e.target === cartModalOverlay) {
+                    cartModalOverlay.style.display = 'none';
+                }
+            });
+
+            // Modal: Remove item
+            cartModalList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('cart-modal-remove-btn')) {
+                    const idx = parseInt(e.target.getAttribute('data-idx'));
+                    removeFromCart(idx);
+                }
+            });
+
+            // Modal: Checkout button
+            cartModalCheckoutBtn.addEventListener('click', function() {
+                window.location.href = 'order-summary.html';
+            });
+
+            updateCart();
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="image/LOGO.png" alt="Jakemartin Domingo Retail Hub Logo" class="logo-img" />
+        </div>
+        <nav>
+            <button class="burger-btn" id="burger-btn" aria-label="Toggle navigation" tabindex="0">
+                <span class="burger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Welcome to Jakemartin Domingo Retail Hub</h1>
+        <h2>Your Trusted Neighborhood Convenience Store in Manila!</h2>
+        <p>Located in the heart of Barangay San Miguel, Jakemartin Domingo Retail Hub offers a wide range of daily essentials, snacks, beverages, and local favorites—all in one convenient spot. Whether you’re on your way to work, heading home, or simply craving something quick, <b>nandito kami para sa’yo!</b></p>
+        <p>We are committed to providing a sulit, safe, and smooth shopping experience for every customer. Drop by and discover why we’re one of the most trusted local retail hubs in the City of Manila.<br><b>Open daily – Para sa inyong convenience.</b></p>
+        <button class="btn-shop" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'});">Shop Now</button>
+    </section>
+
+    <section class="section" id="about">
+        <div class="section-title">About Us</div>
+        <div class="about-content">
+            <p><strong>Our Story: From Community Roots to Everyday Essentials</strong></p>
+            <p>Jakemartin Domingo Retail Hub was established with a simple mission: to serve our local community with affordable and accessible everyday goods. Starting as a modest sari-sari style setup, we have grown into a full-service convenience store trusted by residents of Barangay San Miguel and beyond.</p>
+            <ul class="values-list">
+                <li>Community First: We prioritize the needs of our kapitbahay.</li>
+                <li>Quality Products: From household items to quick snacks, we offer only trusted brands.</li>
+                <li>Friendly Service: Our staff are always ready to assist with a smile.</li>
+            </ul>
+            <p>At Jakemartin, we believe in creating a welcoming space where everyone feels at home—para kang nasa tindahan ni kuya!</p>
+        </div>
+    </section>
+
+    <section class="section" id="products">
+        <div class="section-title">Products & Services</div>
+        <p>We proudly carry a curated selection of local and international products for all your daily needs:</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="image/placeholder1.png" alt="Canned Goods" class="product-img">
+                <div class="product-title">Canned Goods (Assorted)</div>
+                <div class="product-desc">Reliable pantry staples for everyday cooking.</div>
+                <div class="product-info">Qty: 12</div>
+                <div class="product-price">₱45.00</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="image/placeholder2.png" alt="Instant Noodles" class="product-img">
+                <div class="product-title">Instant Noodles (5-pack)</div>
+                <div class="product-desc">Quick, tasty, and sulit for busy days.</div>
+                <div class="product-info">Qty: 8</div>
+                <div class="product-price">₱68.00</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="image/placeholder3.png" alt="Soft Drinks 1L" class="product-img">
+                <div class="product-title">Soft Drinks (1L)</div>
+                <div class="product-desc">Ice cold refreshment for any occasion.</div>
+                <div class="product-info">Qty: 15</div>
+                <div class="product-price">₱36.50</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="image/placeholder4.png" alt="Chicharon" class="product-img">
+                <div class="product-title">Chicharon (Local)</div>
+                <div class="product-desc">Crispy, savory Filipino favorite.</div>
+                <div class="product-info">Qty: 7</div>
+                <div class="product-price">₱55.00</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="image/placeholder5.png" alt="Toiletries Pack" class="product-img">
+                <div class="product-title">Toiletries Pack</div>
+                <div class="product-desc">Daily hygiene essentials in one pack.</div>
+                <div class="product-info">Qty: 10</div>
+                <div class="product-price">₱110.00</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="image/placeholder6.png" alt="Biscuits & Chocolates" class="product-img">
+                <div class="product-title">Biscuits & Chocolates</div>
+                <div class="product-desc">Sweet treats for every mood.</div>
+                <div class="product-info">Qty: 18</div>
+                <div class="product-price">₱39.99</div>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart-section" id="cart">
+        <div class="cart-title">Your Cart</div>
+        <ul class="cart-list" id="cart-list">
+        </ul>
+        <div class="cart-total" id="cart-total">Total: ₱0.00</div>
+        <button class="checkout-btn" id="checkout-btn" disabled>Checkout</button>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="section-title">Contact Us</div>
+        <ul class="contact-list">
+            <li><b>Store Address:</b> #16 Ligaya Street, Barangay San Miguel, City of Manila, NCR, Philippines</li>
+            <li><b>Phone:</b> <a href="tel:+639613588291">+63 961 358 8291</a></li>
+            <li><b>Email:</b> <a href="mailto:contact@jakemartindomingohub.com">contact@jakemartindomingohub.com</a></li>
+            <li><b>Website:</b> <a href="https://jakemartindomingohub.com" target="_blank">jakemartindomingohub.com</a></li>
+            <li><b>Business Hours:</b> <br>
+                Monday to Saturday: 7:00 AM – 9:00 PM<br>
+                Sunday: 8:00 AM – 6:00 PM
+            </li>
+        </ul>
+        <p>We’re just one text or call away—<b>sagot agad si Ate sa counter!</b></p>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="refund-policy.html">Refund Policy</a>
+        </div>
+        <div class="footer-company">
+            Jakemartin Domingo Retail Hub – Convenience Store<br>
+            #16 Ligaya Street, Barangay San Miguel, City of Manila, NCR, Philippines
+        </div>
+        <div class="footer-meta">
+            Phone: +63 961 358 8291 | Email: contact@jakemartindomingohub.com<br>
+            Business Type: Retail – Convenience Store | Established: 2022<br>
+            TIN/VAT Reg: 009-234-567-890 | Registered with: Barangay San Miguel Business Permits & Licensing Office<br>
+            Google Maps Registered Business: <a href="#" target="_blank">Google Maps link</a>
+        </div>
+        <div style="margin-top:14px; font-size:0.88rem; color:#ffe082; opacity:0.75;">
+            &copy; 2025 Jakemartin Domingo Retail Hub. All rights reserved.
+        </div>
+    </footer>
+
+    <button class="cart-fab" id="cart-fab" aria-label="Keranjang Belanja">
+        <span class="cart-fab-icon">&#128722;</span>
+        <span class="cart-fab-count" id="cart-fab-count">0</span>
+    </button>
+    <div class="cart-modal-overlay" id="cart-modal-overlay">
+        <div class="cart-modal">
+            <div class="cart-modal-header">
+                <span>Total Belanja</span>
+                <button class="cart-modal-close" id="cart-modal-close" aria-label="Tutup">&times;</button>
+            </div>
+            <ul class="cart-modal-list" id="cart-modal-list">
+            </ul>
+            <div class="cart-modal-total" id="cart-modal-total">Total: ₱0.00</div>
+            <button class="cart-modal-checkout-btn" id="cart-modal-checkout-btn" disabled>Checkout</button>
+        </div>
+    </div>
+</body>
+</html>
