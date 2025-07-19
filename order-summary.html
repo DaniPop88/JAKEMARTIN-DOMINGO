@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary | Jakemartin Domingo Retail Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure and professional checkout summary for Jakemartin Domingo Retail Hub. Confirm your order, verify details, and complete payment easily.">
+    <link rel="icon" type="image/png" href="image/FAVICON.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --accent: #f9a825;
+            --background: #222;
+            --white: #fff;
+            --text: #f5f5f5;
+            --border: #333;
+            --card: #282828;
+            --success: #43a047;
+            --error: #d32f2f;
+        }
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 18px 0 12px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(32, 98, 161, 0.08);
+        }
+        .logo-img {
+            display: block;
+            margin: 0 auto 9px auto;
+            height: 60px;
+        }
+        .site-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        main {
+            max-width: 470px;
+            margin: 38px auto 0 auto;
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #18181844;
+            padding: 34px 26px 28px 26px;
+        }
+        .summary-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+        .order-details {
+            margin-bottom: 22px;
+            padding: 0;
+        }
+        .order-details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .order-details-list li {
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.04rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .order-details-list li:last-child {
+            border-bottom: none;
+        }
+        .order-label {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .order-value {
+            color: var(--white);
+            font-weight: 400;
+        }
+        .order-total {
+            font-size: 1.13rem;
+            font-weight: 700;
+            color: var(--accent);
+            padding-top: 10px;
+            text-align: right;
+        }
+        form {
+            margin-top: 24px;
+        }
+        .section-title {
+            font-size: 1.13rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            margin-top: 24px;
+        }
+        .form-group {
+            margin-bottom: 17px;
+        }
+        .form-label {
+            display: block;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 10px 11px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #181818;
+            color: var(--white);
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .form-textarea {
+            min-height: 56px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 20px;
+            font-size: 1.09rem;
+            font-weight: 700;
+            padding: 13px 32px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px #ffe08222;
+            transition: background 0.18s, color 0.18s;
+        }
+        .submit-btn:hover {
+            background: #ffd54f;
+            color: var(--primary);
+        }
+        .confirmation {
+            display: none;
+            margin-top: 24px;
+            padding: 18px 15px;
+            border-radius: 10px;
+            background: #263238;
+            box-shadow: 0 2px 12px #18181840;
+            color: var(--success);
+            font-size: 1.09rem;
+            font-weight: 500;
+        }
+        .confirmation strong {
+            color: var(--accent);
+            font-size: 1.1em;
+        }
+        .instructions {
+            background: #181818;
+            color: var(--white);
+            padding: 18px 15px;
+            border-radius: 8px;
+            font-size: 0.99rem;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        .instructions b {
+            color: var(--accent);
+        }
+        .payment-warning {
+            color: var(--error);
+            background: #fffde7;
+            border-radius: 8px;
+            padding: 12px 11px;
+            font-size: 1rem;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            box-shadow: 0 1px 6px #d32f2f22;
+        }
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 24px 12px 18px 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 46px;
+            font-size: 1.01rem;
+        }
+        .footer-links {
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 9px;
+            font-size: 0.97rem;
+            font-weight: 700;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: var(--white);
+        }
+        .footer-company, .footer-meta {
+            margin-bottom: 6px;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 13px 4vw 13px 4vw;
+                margin: 22px auto 0 auto;
+                max-width: 99vw;
+            }
+            .logo-img { height: 44px; }
+            .site-title { font-size: 1.09rem; }
+            .summary-title, .section-title { font-size: 1.07rem; }
+            .order-details-list li { font-size: 0.97rem; }
+            .order-total { font-size: 1.03rem; }
+            .submit-btn { font-size: 1rem; padding: 12px 8px; }
+            .confirmation { font-size: 1rem; }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.getElementById('checkout-form');
+            var confirmation = document.getElementById('confirmation');
+            var instructions = document.getElementById('instructions');
+            var paymentWarning = document.getElementById('payment-warning');
+            var orderDetails = document.getElementById('order-details');
+            var paymentMethod = document.getElementById('payment-method');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                confirmation.style.display = 'block';
+                form.style.display = 'none';
+                instructions.style.display = 'block';
+                paymentWarning.style.display = 'block';
+                orderDetails.style.display = 'block';
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <img src="image/LOGO.png" alt="Jakemartin Domingo Retail Hub Logo" class="logo-img">
+        <div class="site-title">Jakemartin Domingo Retail Hub</div>
+    </header>
+    <main>
+        <div class="summary-title">Checkout Overview</div>
+        <div class="order-details" id="order-details">
+            <ul class="order-details-list">
+                <li><span class="order-label">Order Number</span><span class="order-value">#JKM-2025-00123</span></li>
+                <li><span class="order-label">Customer Name</span><span class="order-value">Juan Dela Cruz</span></li>
+                <li><span class="order-label">Contact</span><span class="order-value">+63 912 345 6789</span></li>
+                <li><span class="order-label">Email</span><span class="order-value">juan.delacruz@email.com</span></li>
+                <li><span class="order-label">Delivery Address</span><span class="order-value">#16 Ligaya St., San Miguel, Manila</span></li>
+                <li><span class="order-label">Items Ordered</span><span class="order-value">Assorted Groceries & Snacks</span></li>
+                <li><span class="order-label">Subtotal</span><span class="order-value">₱350.00</span></li>
+                <li><span class="order-label">Delivery Fee</span><span class="order-value">₱50.00</span></li>
+                <li><span class="order-label">Payment Method</span><span class="order-value">GCash</span></li>
+            </ul>
+            <div class="order-total">Grand Total: ₱400.00</div>
+        </div>
+        <form id="checkout-form" autocomplete="off">
+            <div class="section-title">Confirm Your Order</div>
+            <div class="form-group">
+                <label class="form-label" for="customer-name">Full Name</label>
+                <input type="text" class="form-input" id="customer-name" name="customer-name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="customer-phone">Contact Number</label>
+                <input type="tel" class="form-input" id="customer-phone" name="customer-phone" required placeholder="09XX-XXX-XXXX">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="customer-email">Email Address</label>
+                <input type="email" class="form-input" id="customer-email" name="customer-email" required placeholder="you@email.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="delivery-address">Delivery Address</label>
+                <textarea class="form-textarea" id="delivery-address" name="delivery-address" required placeholder="Complete address"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="payment-method">Preferred Payment Method</label>
+                <select class="form-select" id="payment-method" name="payment-method" required>
+                    <option value="">Select payment method</option>
+                    <option value="gcash">GCash</option>
+                    <option value="maya">Maya</option>
+                    <option value="card">Debit/Credit Card</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="order-notes">Order Notes (Optional)</label>
+                <textarea class="form-textarea" id="order-notes" name="order-notes" placeholder="Any color, flavor, or product details"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Order</button>
+        </form>
+        <div class="confirmation" id="confirmation">
+            <strong>Order Submitted Successfully!</strong>
+            <br><br>
+            Thank you for shopping with us. Our team will reach out to you soon to verify and finalize your order details. Please be ready to confirm product specifics, including color, flavor, and availability. Your confirmation is required before we provide a secure payment link.
+        </div>
+        <div class="instructions" id="instructions" style="display:none;">
+            <b>What happens next?</b><br>
+            <ul style="margin:10px 0 0 16px; padding:0; color: #ffe082;">
+                <li>Our staff will contact you via phone or email to confirm all order details.</li>
+                <li>Once confirmed, you will receive a link to complete payment using your selected method.</li>
+                <li>Please complete payment within <b>24 hours</b> to avoid automatic cancellation.</li>
+                <li>After payment, your order will be prepared and delivered as scheduled.</li>
+            </ul>
+        </div>
+        <div class="payment-warning" id="payment-warning" style="display:none;">
+            Please note: Payment must be completed within 24 hours after confirmation. Orders unpaid within this period will be automatically cancelled. We appreciate your prompt response!
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="refund-policy.html">Refund Policy</a>
+        </div>
+        <div class="footer-company">
+            Jakemartin Domingo Retail Hub – Convenience Store<br>
+            #16 Ligaya Street, Barangay San Miguel, City of Manila, NCR, Philippines
+        </div>
+        <div class="footer-meta">
+            Phone: +63 961 358 8291 | Email: contact@jakemartindomingohub.com<br>
+            Business Type: Retail – Convenience Store | Established: 2022<br>
+            TIN/VAT Reg: 009-234-567-890 | Registered with: Barangay San Miguel Business Permits & Licensing Office<br>
+            Google Maps Registered Business: <a href="#" target="_blank">Google Maps link</a>
+        </div>
+        <div style="margin-top:10px; font-size:0.85rem; color:#ffe082; opacity:0.75;">
+            &copy; 2025 Jakemartin Domingo Retail Hub. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
