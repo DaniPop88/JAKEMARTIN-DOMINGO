@@ -85,3 +85,13 @@ footer { background: var(--panel); border-top: 1px solid var(--line); border-rad
   .hero::after { position: static; display: inline-block; margin-bottom: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+/* === Quick fix 2026-11-07: layout cleanup === */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+header { width: 100% !important; max-width: 100%; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: #121212 !important; }
+header .logo-container, header nav, #nav-links { max-width: 100%; }
+/* Product photos fill the card */
+.product-img { width: 100% !important; height: auto !important; aspect-ratio: 1 / 1; object-fit: cover !important; padding: 0 !important; display: block; }
+.product-card { display: flex; flex-direction: column; }
+.product-card button { margin-top: auto; }
